@@ -13,6 +13,8 @@
 #  WITHOUT WARRANTIES OR REPRESENTATIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED.
 # 
 ##
+#Check SecureBoot Commandline Option
+CHECK_SECUREBOOT_ENABLE="${4:-0}"
 
 SctpackageDependencyList=(SctPkg BaseTools)
 
@@ -285,9 +287,33 @@ cp $EDK_TOOLS_PATH/Source/C/bin/GenBin $DEST_DIR/GenBin
 # Set $DSC_EXTRA to any extra packages needed for the build
 #
 #for DSC in SctPkg/UEFI/UEFI_SCT.dsc SctPkg/UEFI/IHV_SCT.dsc $DSC_EXTRA
+
+# Process extra flags for secure boot
+SECUREBOOT_ENABLE=0
+if [[ "$CHECK_SECUREBOOT_ENABLE" == ENABLE_SECUREBOOT_TESTS=* ]]; then
+   VALUE="${CHECK_SECUREBOOT_ENABLE#*=}"
+   if [[ "$VALUE" == "TRUE" || "$VALUE" == "1" ]]; then
+        SECUREBOOT_ENABLE=1
+        echo "✅ Secure Boot Tests Enabled"
+   fi
+fi
+
 for DSC in SctPkg/UEFI/UEFI_SCT.dsc $DSC_EXTRA
 do
-	build -p $DSC -a $SCT_TARGET_ARCH -t $TARGET_TOOLS -b $SCT_BUILD $@
+	if [ $SECUREBOOT_ENABLE -eq 1 ]
+	then
+		echo "Building Dependency Packages for Secure Boot.."
+		SOURCE_TARGET=$WORKSPACE/SctPkg/TestCase/UEFI/EFI/RuntimeServices/SecureBoot/BlackBoxTest/Dependency/Images
+		SECURE_APP1=$SOURCE_TARGET/SecureBootApplication1/SecureBootApplication1.inf
+		SECURE_APP2=$SOURCE_TARGET/SecureBootApplication2/SecureBootApplication2.inf
+		SECURE_APP3=$SOURCE_TARGET/SecureBootApplication3/SecureBootApplication3.inf
+		build -p $DSC -m $SECURE_APP1 -D ENABLE_SECUREBOOT_TESTS=TRUE -a $SCT_TARGET_ARCH -t $TARGET_TOOLS -b $SCT_BUILD $@
+		build -p $DSC -m $SECURE_APP2 -D ENABLE_SECUREBOOT_TESTS=TRUE -a $SCT_TARGET_ARCH -t $TARGET_TOOLS -b $SCT_BUILD $@
+		build -p $DSC -m $SECURE_APP3 -D ENABLE_SECUREBOOT_TESTS=TRUE -a $SCT_TARGET_ARCH -t $TARGET_TOOLS -b $SCT_BUILD $@
+		build -p $DSC -D ENABLE_SECUREBOOT_TESTS=TRUE -a $SCT_TARGET_ARCH -t $TARGET_TOOLS -b $SCT_BUILD $@
+	else
+		build -p $DSC -D ENABLE_SECUREBOOT_TESTS=FALSE -a $SCT_TARGET_ARCH -t $TARGET_TOOLS -b $SCT_BUILD $@
+	fi
 	# Check if there is any error
 	status=$?
 	if test $status -ne 0
