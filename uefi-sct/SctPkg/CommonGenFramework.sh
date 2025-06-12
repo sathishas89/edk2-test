@@ -92,6 +92,9 @@ CopyDependency()
     ls -h $ProcessorType/$1_Invalid*       > temp.txt 2>NUL
     ls -h $ProcessorType/$1_*.efi   >> temp.txt 2>NUL
     ls -h $ProcessorType/$1_*.ini   >> temp.txt 2>NUL
+    ls -h $ProcessorType/$1_*.bin  >> temp.txt 2>NUL
+    ls -h $ProcessorType/$1_*.der  >> temp.txt 2>NUL
+    ls -h $ProcessorType/$1_*.auth  >> temp.txt 2>NUL
     ls -h $ProcessorType/$1_*.cmp   >> temp.txt 2>NUL
     ls -h $ProcessorType/$1_*.ucmp  >> temp.txt 2>NUL
 
@@ -130,7 +133,9 @@ then
     cp $ProcessorType/ProtocolHandlerServicesBBTest.efi        $Framework/Test/ > NUL
     cp $ProcessorType/ImageServicesBBTest.efi                  $Framework/Test/ > NUL
     cp $ProcessorType/MiscBootServicesBBTest.efi               $Framework/Test/ > NUL
-    
+
+    cp $ProcessorType/SecureBootBBTest.efi                     $Framework/Test/ > NUL
+
     cp $ProcessorType/VariableServicesBBTest.efi               $Framework/Test/ > NUL
     cp $ProcessorType/TimeServicesBBTest.efi                   $Framework/Test/ > NUL
     cp $ProcessorType/MiscRuntimeServicesBBTest.efi            $Framework/Test/ > NUL
@@ -343,5 +348,6 @@ then
   CopyDependency DeviceIo
   CopyDependency Ebc
   CopyDependency PxeBaseCode
+  CopyDependency SecureBoot
 fi
 
