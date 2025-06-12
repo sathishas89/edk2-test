@@ -278,6 +278,7 @@ then
     CopyDependency PciRootBridgeIo
     CopyDependency PxeBaseCode
     CopyDependency ConfigKeywordHandler
+    CopyDependency SecureBoot
 fi
 
 # *********************************************
