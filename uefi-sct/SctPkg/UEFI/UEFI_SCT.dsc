@@ -432,9 +432,7 @@ SctPkg/TestCase/UEFI/EFI/Protocol/ConfigKeywordHandler/BlackBoxTest/Dependency/S
 # Dependency files for Secure Boot Test^M
 #^M
 !if $(ENABLE_SECUREBOOT_TESTS) == TRUE
-SctPkg/TestCase/UEFI/EFI/RuntimeServices/SecureBoot/BlackBoxTest/Dependency/Images/SecureBootApplication1/SecureBootApplication1.inf
-SctPkg/TestCase/UEFI/EFI/RuntimeServices/SecureBoot/BlackBoxTest/Dependency/Images/SecureBootApplication2/SecureBootApplication2.inf
-SctPkg/TestCase/UEFI/EFI/RuntimeServices/SecureBoot/BlackBoxTest/Dependency/Images/SecureBootApplication3/SecureBootApplication3.inf
+SctPkg/TestCase/UEFI/EFI/RuntimeServices/SecureBoot/BlackBoxTest/Dependency/Images/SecureBootApplication/SecureBootApplication.inf
 SctPkg/TestCase/UEFI/EFI/RuntimeServices/SecureBoot/BlackBoxTest/Dependency/Images/SecureBootImages.inf
 !endif
 #

@@ -15,7 +15,7 @@
 #
 # Module Name:
 #
-#   SecureBootApplication3.inf
+#   SecureBootApplication.inf
 #
 # Abstract:
 #
@@ -25,14 +25,14 @@
 
 [defines]
   INF_VERSION          = 0x00010005
-  BASE_NAME            = SecureBootApplication3
-  FILE_GUID            = 0F236051-6F9C-42AD-8A61-0E5120DE3E0E
+  BASE_NAME            = SecureBootApplication
+  FILE_GUID            = F90FAF72-56D0-450C-8B62-E08058C58B75
   MODULE_TYPE          = UEFI_APPLICATION
   VERSION_STRING       = 1.0
-  ENTRY_POINT          = InitializeEfiSecureBootApplication3
+  ENTRY_POINT          = InitializeEfiSecureBootApplication
 
 [sources.common]
-  SecureBootApplication3.c
+  SecureBootApplication.c
 
 [Packages]
   MdePkg/MdePkg.dec
@@ -43,5 +43,3 @@
   UefiApplicationEntryPoint
   SctLib
   EfiTestLib
-
-[Protocols]

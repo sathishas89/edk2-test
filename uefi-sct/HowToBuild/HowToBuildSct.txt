@@ -26,7 +26,7 @@ $sudo apt-get install openssl sbsigntool efitools
       ln -s edk2-test/uefi-sct/SctPkg/ SctPkg
    6) Build the project:
       - With Secure Boot Tests:
-        SctPkg/build.sh AARCH64 GCC RELEASE ENABLE_SECUREBOOT_TESTS=TRUE (With SecureBoot Tests)
+        SctPkg/build.sh AARCH64 GCC RELEASE ENABLE_SECUREBOOT_TESTS (With SecureBoot Tests)
       - Without Secure Boot Tests:
-        SctPkg/build.sh AARCH64 GCC RELEASE ENABLE_SECUREBOOT_TESTS=FALSE (Without SecureBoot Tests)
+        SctPkg/build.sh AARCH64 GCC RELEASE (Without SecureBoot Tests)
 

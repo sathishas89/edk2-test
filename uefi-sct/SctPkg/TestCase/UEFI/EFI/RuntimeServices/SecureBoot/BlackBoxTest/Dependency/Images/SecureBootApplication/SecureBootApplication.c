@@ -15,7 +15,7 @@
 
 Module Name:
 
-  SecureBootApplication2.c
+  SecureBootApplication.c
 
 Abstract:
 
@@ -31,7 +31,7 @@ Abstract:
 
 EFI_STATUS
 EFIAPI
-InitializeEfiSecureBootApplication2 (
+InitializeEfiSecureBootApplication (
   IN EFI_HANDLE           ImageHandle,
   IN EFI_SYSTEM_TABLE     *SystemTable
   );
@@ -39,7 +39,7 @@ InitializeEfiSecureBootApplication2 (
 
 EFI_STATUS
 EFIAPI
-InitializeEfiSecureBootApplication2 (
+InitializeEfiSecureBootApplication (
   IN EFI_HANDLE           ImageHandle,
   IN EFI_SYSTEM_TABLE     *SystemTable
   )

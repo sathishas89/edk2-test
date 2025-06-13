@@ -15,7 +15,7 @@
 #
 # Module Name:
 #
-#   Keys.inf
+#   SecureBootImages.inf
 #
 # Abstract:
 #
@@ -24,7 +24,7 @@
 #--*/
 
 [defines]
-BASE_NAME            = TestPK1
+BASE_NAME            = SecureBootTestKeys
 FILE_GUID            = 0B1412C0-1AB8-49AB-BC65-F81E368A0AC2
 MODULE_TYPE          = UEFI_DRIVER
 CUSTOM_MAKEFILE      = MSFT| makefile

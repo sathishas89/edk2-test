@@ -26,7 +26,6 @@
 
 BASE_NAME=SecureBoot
 TARGET=$(BIN_DIR)/$(BASE_NAME)
-APP_TARGET=$(WORKSPACE)/Build/UefiSct/RELEASE_GCC5/AARCH64
 FUTURE_DATE=$(shell date --rfc-3339=date -d "+5 year")
 FUTURE_DATE2=$(shell date --rfc-3339=date -d "+1 day")
 FUTURE_DATE3=$(shell date --rfc-3339=date -d "+2 day")
@@ -50,51 +49,51 @@ endif
 all: TestKEK2 TestKEK3 KEKSigList1.auth KEKSigList3.auth TestImage1.bin TestImage2.bin TestImage3.bin TestImage4.bin TestImage5.bin TestImage6.bin TestImage7.bin TestImage8.bin TestImage9.bin TestImage10.bin NullKEK.auth NullDB.auth NullDBX.auth TestKEK1.auth TestDB1.auth TestDBX1.auth SignCert1 dbSigList1.auth SignCert2 SignCert3 SignCert4 RevokedCert1 RevokedCert2 RevokedCert3 RevokedCert4 dbSigList2.auth dbSigList3.auth dbSigList4.auth dbxRevokedList1.auth dbSigList5.auth unsignedKeyUpdate TestImage19.bin TestImage20.bin Image19BCert.auth
 
 TestImage1.bin:
-	cp $(APP_TARGET)/SecureBootApplication1.efi $(TARGET)_$(@)
+	cp $(BIN_DIR)/SecureBootApplication.efi $(TARGET)_$(@)
 
 TestImage2.bin: SignCert1
-	cp $(APP_TARGET)/SecureBootApplication1.efi $(TARGET)_$(@)
+	cp $(BIN_DIR)/SecureBootApplication.efi $(TARGET)_$(@)
 	sbsign --key $(TARGET)_SignCert1.key --cert $(TARGET)_SignCert1.crt $(TARGET)_$(@) --output $(TARGET)_$(@)
 
 TestImage3.bin: SignCert2
-	cp $(APP_TARGET)/SecureBootApplication2.efi $(TARGET)_$(@)
+	cp $(BIN_DIR)/SecureBootApplication.efi $(TARGET)_$(@)
 	sbsign --key $(TARGET)_SignCert2.key --cert $(TARGET)_SignCert2.crt $(TARGET)_$(@) --output $(TARGET)_$(@)
 
 TestImage4.bin: SignCert3
-	cp $(APP_TARGET)/SecureBootApplication2.efi $(TARGET)_$(@)
+	cp $(BIN_DIR)/SecureBootApplication.efi $(TARGET)_$(@)
 	sbsign --key $(TARGET)_SignCert3.key --cert $(TARGET)_SignCert3.crt $(TARGET)_$(@) --output $(TARGET)_$(@)
 
 TestImage5.bin:
-	cp $(APP_TARGET)/SecureBootApplication2.efi $(TARGET)_$(@)
+	cp $(BIN_DIR)/SecureBootApplication.efi $(TARGET)_$(@)
 
 TestImage6.bin: RevokedCert1
-	cp $(APP_TARGET)/SecureBootApplication2.efi $(TARGET)_$(@)
+	cp $(BIN_DIR)/SecureBootApplication.efi $(TARGET)_$(@)
 	sbsign --key $(TARGET)_RevokedCert1.key --cert $(TARGET)_RevokedCert1.crt $(TARGET)_$(@) --output $(TARGET)_$(@)
 
 TestImage7.bin: RevokedCert2
-	cp $(APP_TARGET)/SecureBootApplication2.efi $(TARGET)_$(@)
+	cp $(BIN_DIR)/SecureBootApplication.efi $(TARGET)_$(@)
 	sbsign --key $(TARGET)_RevokedCert2.key --cert $(TARGET)_RevokedCert2.crt $(TARGET)_$(@) --output $(TARGET)_$(@)
 
 TestImage8.bin: RevokedCert3
-	cp $(APP_TARGET)/SecureBootApplication2.efi $(TARGET)_$(@)
+	cp $(BIN_DIR)/SecureBootApplication.efi $(TARGET)_$(@)
 	sbsign --key $(TARGET)_RevokedCert3.key --cert $(TARGET)_RevokedCert3.crt $(TARGET)_$(@) --output $(TARGET)_$(@)
 
 TestImage9.bin: RevokedCert4
-	cp $(APP_TARGET)/SecureBootApplication2.efi $(TARGET)_$(@)
+	cp $(BIN_DIR)/SecureBootApplication.efi $(TARGET)_$(@)
 	sbsign --key $(TARGET)_RevokedCert4.key --cert $(TARGET)_RevokedCert4.crt $(TARGET)_$(@) --output $(TARGET)_$(@)
 
 TestImage10.bin: SignCert3
-	cp $(APP_TARGET)/SecureBootApplication3.efi $(TARGET)_Unsigned_$(@).tmp
-	cp $(APP_TARGET)/SecureBootApplication3.efi $(TARGET)_$(@)
+	cp $(BIN_DIR)/SecureBootApplication.efi $(TARGET)_Unsigned_$(@).tmp
+	cp $(BIN_DIR)/SecureBootApplication.efi $(TARGET)_$(@)
 	sbsign --key $(TARGET)_SignCert3.key --cert $(TARGET)_SignCert3.crt $(TARGET)_$(@) --output $(TARGET)_$(@)
 
 TestImage19.bin: Image19ACert Image19BCert
-	cp $(APP_TARGET)/SecureBootApplication2.efi $(TARGET)_$(@)
+	cp $(BIN_DIR)/SecureBootApplication.efi $(TARGET)_$(@)
 	sbsign --key $(TARGET)_Image19ACert.key --cert $(TARGET)_Image19ACert.crt $(TARGET)_$(@) --output $(TARGET)_$(@)
 	sbsign --key $(TARGET)_Image19BCert.key --cert $(TARGET)_Image19BCert.crt $(TARGET)_$(@) --output $(TARGET)_$(@)
 
 TestImage20.bin: Image20ACert Image20BCert
-	cp $(APP_TARGET)/SecureBootApplication2.efi $(TARGET)_$(@)
+	cp $(BIN_DIR)/SecureBootApplication.efi $(TARGET)_$(@)
 	sbsign --key $(TARGET)_Image20ACert.key --cert $(TARGET)_Image20ACert.crt $(TARGET)_$(@) --output $(TARGET)_$(@)
 	sbsign --key $(TARGET)_Image20BCert.key --cert $(TARGET)_Image20BCert.crt $(TARGET)_$(@) --output $(TARGET)_$(@)
 
