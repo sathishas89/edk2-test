@@ -4,12 +4,29 @@
 
 Build Instructions for UEFI SCTII AARCH64 (Linux)
 
-Pre-requisite: install required tools. For example, on WSL running Ubuntu:
+Pre-requisite:
+Before beginning the build, install the required packages:
+
+Basic Toolchain:
+On Ubuntu (e.g., via WSL):
 $ sudo apt-get install build-essential uuid-dev python3-distutils gcc-aarch64-linux-gnu
 
-   1) mkdir "sct_workspace"
-   2) cd sct_workspace
-   3) git clone https://github.com/tianocore/edk2-test.git
-   4) git clone --recursive https://github.com/tianocore/edk2.git
-   5) ln -s edk2-test/uefi-sct/SctPkg/ SctPkg
-   6) SctPkg/build.sh AARCH64 GCC RELEASE
+For Secure Boot Tests:
+$sudo apt-get install openssl sbsigntool efitools
+
+   1) Create a workspace directory:
+      mkdir "sct_workspace"
+   2) Navigate into the workspace:
+      cd sct_workspace
+   3) Clone the edk2-test repository:
+      git clone https://github.com/tianocore/edk2-test.git
+   4) Clone the edk2 repository with all submodules:
+      git clone --recursive https://github.com/tianocore/edk2.git
+   5) Create a symbolic link to the SCT package:
+      ln -s edk2-test/uefi-sct/SctPkg/ SctPkg
+   6) Build the project:
+      - With Secure Boot Tests:
+        SctPkg/build.sh AARCH64 GCC RELEASE ENABLE_SECUREBOOT_TESTS=TRUE (With SecureBoot Tests)
+      - Without Secure Boot Tests:
+        SctPkg/build.sh AARCH64 GCC RELEASE ENABLE_SECUREBOOT_TESTS=FALSE (Without SecureBoot Tests)
+
