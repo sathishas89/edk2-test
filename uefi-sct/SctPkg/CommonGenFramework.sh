@@ -349,6 +349,5 @@ then
   CopyDependency DeviceIo
   CopyDependency Ebc
   CopyDependency PxeBaseCode
-  CopyDependency SecureBoot
 fi
 
