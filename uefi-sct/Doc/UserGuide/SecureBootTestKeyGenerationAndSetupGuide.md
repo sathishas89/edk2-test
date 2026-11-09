@@ -30,6 +30,14 @@ Secure Boot is a key security mechanism that ensures a system boots only with fi
 ### 3. `VariableUpdates`
 - Tests runtime update paths for Secure Boot variables to ensure UEFI-enforced access control policies are in place.
 
+### 4. `AuthVariablePersistence`
+
+- Verifies KEK payload, attributes, and replay protection across one cold reset: installs PK-signed T1, rejects an unsigned update, verifies persistence, rejects T1 replay, and accepts newer T2.
+- Restores TestKEK1 using newer T3 and reports PASS only after restoration and recovery-state cleanup succeed.
+- Requires `TestKEK4T1.auth`, `TestKEK4T2.auth`, and `TestKEK1T3.auth` in `Dependency/SecureBootBBTest`; extracts the expected ESL payloads directly from these requests.
+- Build with `ENABLE_SECUREBOOT_TESTS`, `KEYS_DIR`, and GNU Make 4.3 or newer, using the enrolled TestPK1 and TestKEK1.
+- Resume the same SCT package after reset and retain its fixtures and recovery journal until cleanup succeeds.
+
 ---
 
 ## Pre-requisites

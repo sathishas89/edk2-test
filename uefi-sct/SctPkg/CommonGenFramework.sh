@@ -1,7 +1,7 @@
 #!/bin/sh
 #
 #  Copyright 2006 - 2017 Unified EFI, Inc.<BR>
-#  Copyright (c) 2011 - 2019, 2025, ARM Ltd. All rights reserved.<BR>
+#  Copyright (c) 2011 - 2019, 2025 - 2026, ARM Ltd. All rights reserved.<BR>
 #  Copyright (c) 2014 - 2018, Intel Corporation. All rights reserved.<CR>
 #  (C) Copyright 2017 Hewlett Packard Enterprise Development LP<BR>
 #  Copyright (c) 2019,Microchip Technology Inc.<BR>
